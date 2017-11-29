@@ -53,7 +53,7 @@ public:
 	/// and the outstation will return IIN 2.1 (FUNC_NOT_SUPPORTED)
 	virtual bool SupportsWriteAbsoluteTime()
 	{
-		return false;
+		return true;
 	}
 
 	/// Write the time to outstation, only called if SupportsWriteAbsoluteTime return true
@@ -62,7 +62,7 @@ public:
 	/// The outstation should clear its NEED_TIME field when handling this response
 	virtual bool WriteAbsoluteTime(const openpal::UTCTimestamp& timestamp)
 	{
-		return false;
+		return true;
 	}
 
 	/// Queries whether the outstation supports the writing of TimeAndInterval
@@ -70,7 +70,7 @@ public:
 	/// and the outstation will return IIN 2.1 (FUNC_NOT_SUPPORTED) when it receives this request
 	virtual bool SupportsWriteTimeAndInterval()
 	{
-		return false;
+		return true;
 	}
 
 	/// Write one or more TimeAndInterval values. Only called if SupportsWriteTimeAndInterval returns true.
@@ -80,7 +80,7 @@ public:
 	/// false will cause the outstation to set IIN 2.3 (PARAM_ERROR) in its response.
 	virtual bool WriteTimeAndInterval(const ICollection<Indexed<TimeAndInterval>>& values)
 	{
-		return false;
+		return true;
 	}
 
 	/// True if the outstation supports the assign class function code
