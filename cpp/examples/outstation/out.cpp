@@ -53,9 +53,13 @@ int main(int argc, char *argv[])
         while(true)
         {
                 UpdateBuilder builder;
+                builder.Update(Binary(state.binary), 0);
+                builder.Update(Binary(state.binary), 1);
+                builder.Update(Binary(state.binary), 2);
+                builder.Update(Binary(state.binary), 3);
+                builder.Update(Binary(state.binary), 4);
                 
-                uint16_t index = 0;
-                for (int i; i < 5; i++)
-                {
-                        //builder.Update(Analog(state.value), 0);
+                
+                //builder.Update(Analog(state.value), 0);
+                
                 
