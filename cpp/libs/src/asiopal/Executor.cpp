@@ -111,7 +111,7 @@ void Executor::BlockUntil(const std::function<void()>& action)
 	else
 	{
 		Synchronized<bool> sync;
-		auto point = &sync;
+		auto pointer = &sync;
 		auto lambda = [action, pointer]()
 		{
 			action();
