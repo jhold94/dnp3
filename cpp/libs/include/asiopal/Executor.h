@@ -123,7 +123,7 @@ T Executor::ReturnFrom(const std::function<T()>& action)
 			pointer->SetValue(tmp);
 		};
 		strand.post(lambda);
-		return sync.WaitForValue;
+		return sync.WaitForValue();
 	}
 }
 
