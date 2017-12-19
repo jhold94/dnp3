@@ -28,6 +28,7 @@
 #include "asiopal/SteadyClock.h"
 
 #include <future>
+#include "Synchronized.h"
 
 namespace asiopal
 {
@@ -96,7 +97,7 @@ T Executor::ReturnFrom(const std::function<T()>& action)
 	{
 		return action();
 	}
-
+	/*
 	std::promise<T> ready;
 
 	auto future = ready.get_future();
@@ -111,6 +112,19 @@ T Executor::ReturnFrom(const std::function<T()>& action)
 	future.wait();
 
 	return future.get();
+	*/
+	else
+	{
+		Synchronized<T> sync;
+		auto pointer = &sync;
+		auto lambda = [action, pointer]()
+		{
+			T tmp = action();
+			pointer->SetValue(tmp);
+		};
+		strand.post(lambda);
+		return sync.WaitForValue;
+	}
 }
 
 
